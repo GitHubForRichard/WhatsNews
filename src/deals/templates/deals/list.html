@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deals</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Noto+Sans+SC">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+
+</head>
+
+<style>
+.deal-image {
+    width: 100%;
+    height: 24vh;
+    transition: .5s;
+    border-radius: 10px;
+}
+
+.deal-title {
+    font-size: 14px;
+    font-family: "Noto Sans SC";
+}
+
+a:link {
+    color: black;
+    text-decoration: none;
+    transition: .5s
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    color: red;
+    text-decoration: none;
+}
+
+a:hover .deal-image {
+    opacity: 0.3
+}
+
+a:hover i {
+    opacity: 0.3
+}
+
+.section-header {
+    margin: 20px 0px;
+    border-left: solid red 5px
+}
+
+.section-header-text {
+    color: royalblue;
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: "Microsoft YaHei"
+}
+
+
+
+
+
+</style>
+
+<body>
+{% include "C:/Users/Che Liu/PycharmProjects/dashboard/src/navbar.html" with active_tab='Deals'%}
+<div class="container">
+    <!--section header-->
+    <div class="section-header">
+        <span class="section-header-text">折扣排行榜</span>
+    </div>
+
+    <!--deal list -->
+    <div class="row">
+        <!--card created-->
+        {% for deal in deal_list %}
+        <div class="col-sm-2">
+            <a class="deal-link" href="{{ deal.url }}">
+                <div class="card h-100 text-center" style="border: none;">
+                    {% if deal.image %}
+                    <img class="deal-image card-img-top" src="{{ deal.image.url }}">
+                    <!--put ranking icon and numbering-->
+                    <div>
+                      <span class="fa-stack fa-3x"
+                            style="position: absolute;top: 6px;right: 10px;font-size: 20px;color: red;">
+                        <i class="fa fa-tag fa-stack-2x"></i>
+                        <strong class="fa-stack-1x fa-tag-text" style="color: white">{{ forloop.counter }}</strong>
+                      </span>
+                    </div>
+                    {% endif %}
+                    <!-- card title-->
+                    <div class="card-body">
+                        <h5 class="deal-title card-text">{{ deal.title }}</h5>
+                    </div>
+                </div>
+        </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+</html>

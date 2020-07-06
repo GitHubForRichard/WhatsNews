@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+</head>
+
+<style>
+
+.carousel-caption h5 {
+    font-weight: bold;
+    font-size: 52px;
+    font-family: "Microsoft YaHei"
+}
+
+.carousel-item {
+    height: 500px;
+}
+
+.carousel-item img{
+    height: 500px;
+    object-fit:cover;
+}
+
+tr {
+    font-weight: bold;
+    font-size: 22px;
+    font-family: "Microsoft YaHei"
+}
+
+.carousel-control-prev-icon {
+    color: black
+}
+
+.confirm-case-title, .confirm-case, .death-case-title, .death-case {
+    color: red
+}
+
+.cured-case-title, .cured-case {
+    color: green
+}
+
+.confirm-case-today-title, .confirm-case-today {
+    color: royalblue
+}
+
+.section-header {
+    margin-bottom: 20px;
+    border-left: solid red 5px
+}
+
+.section-header-text {
+    color: royalblue;
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: "Microsoft YaHei"
+}
+
+.news-image {
+    max-width: 100%;
+    height: 22vh;
+    object-fit: cover;
+    transition: .5s
+}
+
+.news-title {
+    font-weight: bold;
+    font-size: 20px;
+    font-family: "Microsoft YaHei";
+}
+
+a:link {
+    color: black;
+    text-decoration: none;
+    transition: .5s
+}
+
+a:hover {
+    color: red;
+    text-decoration: none;
+}
+
+a:hover .news-image {
+    opacity: 0.3
+}
+
+.news-desc {
+    font-size: 16px;
+    font-family: "Microsoft YaHei";
+}
+
+
+
+
+</style>
+
+<body>
+{% include "C:/Users/Che Liu/PycharmProjects/dashboard/src/navbar.html" with active_tab='News'%}
+<!--statistic table regarding to corona virus cases-->
+<div class="container">
+    <div class="section-header">
+        <span class="section-header-text">新冠病毒資訊</span>
+    </div>
+    <table class="w-100 virus-count-table" style="text-align: center;">
+        <tr class="header">
+            <th class="confirm-case-title">確診</th>
+            <th class="confirm-case-today-title">今日確診</th>
+            <th class="death-case-title">死亡</th>
+            <th class="cured-case-title">治癒</th>
+        </tr>
+        <tr class="row-count">
+            <td class="confirm-case">{{confirm_case.virusCount}}</td>
+            <td class="confirm-case-today">{{confirm_case_today}}</td>
+            <td class="death-case">{{death_case}}</td>
+            <td class="cured-case">{{cured_case}}</td>
+        </tr>
+    </table>
+    <hr/>
+</div>
+
+
+<!-- top news carousel-->
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-header-text">焦點新聞</span>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a href="{{top_news1.url}}">
+                    <img class="d-block w-100" src={{top_news1.image.url}} alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>{{top_news1.title}}</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a href="{{top_news2.url}}">
+                    <img class="d-block w-100" src={{top_news2.image.url}} alt="Second slide">
+                    <div class="carousel-caption d-none d-block">
+                        <h5>{{top_news2.title}}</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a href="{{top_news3.url}}">
+                    <img class="d-block w-100" src={{top_news3.image.url}} alt="Third slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>{{top_news3.title}}</h5>
+                    </div>
+                </a>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <hr/>
+    </div>
+</div>
+
+<!-- news list -->
+<div class="container">
+    <div class="section-header">
+        <span class="section-header-text">今日新聞</span>
+    </div>
+    {% for object in object_list %}
+    <div class="card mb-3" style="width: 100%">
+        <a class="news-url" href="{{ object.url }}">
+            <div class="row no-gutters">
+                <div class="col-md-2">
+                    {% if object.image %}
+                    <img class="news-image card-img-top"
+                         src="{{ object.image.url }}">
+                    {% endif %}
+                </div>
+                <div class="col-md-10">
+                    <div class="card-body">
+                        <h5 class="news-title card-title">{{ object.title }}</h5>
+                        <p class="news-desc card-text">{{ object.description }}</p>
+                        <p class="news-time card-text"><small class="text-muted">{{object.dateText}}</small></p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>

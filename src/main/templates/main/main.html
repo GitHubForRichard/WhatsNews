@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+
+</head>
+
+<style>
+.tile-text {
+  position: absolute;
+  top: 84px;
+  bottom: 0;
+  left: 56px;
+  right: 0;
+  color: red;
+  font-size: 48px;
+  font-weight: bold;
+  visibility: hidden;
+}
+
+
+ .tile-image{
+    height: 240px;
+    width: 300px;
+    transition: .5s;
+ }
+
+ a:hover .tile-image {
+    opacity: 0.4
+ }
+
+ a:hover .tile-text {
+    visibility: visible;
+ }
+
+
+
+</style>
+
+<body>
+{% include "C:/Users/Che Liu/PycharmProjects/dashboard/src/navbar.html" with active_tab='Main'%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 col-sm-3">
+            <div class="card" style="width: 18rem;">
+                <a href="/home">
+                    <img class="tile-image" src="https://fatgirlyogaspokane.com/wp-content/uploads/2019/10/news-1.jpg"
+                         class="card-img-top"
+                         alt="..">
+                    <span class="tile-text">
+                        NEWS
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="col-6 col-sm-3">
+            <div class="card" style="width: 18rem;">
+                <a href="/deals">
+                    <img class="tile-image"
+                         src="https://yb4ke1guf9g32qn4pnt1k17m-wpengine.netdna-ssl.com/wp-content/uploads/2019/01/deal-sites.jpg.webp"
+                         class="card-img-top" alt="...">
+                    <span class="tile-text">
+                        DEALS
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-6 col-sm-3">
+            <div class="card" style="width: 18rem;">
+                <a href="/notes">
+                    <img class="tile-image"
+                         src="https://metro.co.uk/wp-content/uploads/2019/01/ella-byworth-why-failure-is-good-for-you-608f.jpg?quality=90&strip=all"
+                         class="card-img-top" alt="...">
+                    <span class="tile-text">
+                        NOTES
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
